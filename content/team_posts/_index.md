@@ -10,6 +10,5 @@ authors:
 showAuthorsBadges : false
 ---
 
-# Welcome to Team WeCanDoThis!
-
-Welcome to the Professorial Team's Blog
+# We are the Housing Homies
+Welcome to our blog!
