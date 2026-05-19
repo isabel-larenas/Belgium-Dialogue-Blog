@@ -13,7 +13,9 @@ authors:
 showAuthorsBadges: false
 ---
 # Project Description
-enter description here
+Housing in Europe has become an issue for many citizens due to a limited supply, rising costs, and reduced affordability. Using datasets from Eurostat, we want to calculate the best housing for users based on environmental factors such as crime, population, urbanness and age. Taking into account these parameters, we want to create an interactive platform where users can make informed decisions with the housing data that we provide. We will create three user personas: students/family, real estate professionals, and government agencies of which can use our program to find the best housing based on their needs and wants.
+	
+For students like Noah, this website would find safe, quiet, and affordable housing options plus the ability to live near campus by typing in the school address. For real estate agents like James, it highlights the best markets to target by tracking housing vacancies and investment potential. For project managers like Emma, it would map poverty rates after housing costs and overcrowding by demographic, helping direct ESF+ resources to the communities that need them most. By centralizing this data into one website, we aim to reduce the challenges in accessing housing information.
 
 # User personas
 ## Student- Noah Bernard
