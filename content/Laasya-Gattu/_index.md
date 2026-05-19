@@ -1,3 +1,3 @@
 # Laasya Gattu
 
-This guys is fake, he doesn't even go to school here.
+First Year Data Science and Business Administration Major, Minor in Public Health
