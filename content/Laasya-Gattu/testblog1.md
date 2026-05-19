@@ -1,12 +1,12 @@
 ---
-title: "I'm testing"
-date: 2024-05-21
+title: "Blog Post 1"
+date: 2026-05-19
 draft: false
 description: "Another test"
 slug: "blog1"   # if you use, needs to be different for every post
 tags: ["authors", "config", "docs"]
 authors:
-  - "anew_guy"
+  - "laasya-gattu"
 showAuthorsBadges : false
 ---
 
