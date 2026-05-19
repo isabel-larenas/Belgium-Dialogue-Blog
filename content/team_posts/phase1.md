@@ -16,7 +16,6 @@ showAuthorsBadges: false
 enter description here
 
 # User personas
-
 ## Student- Noah Bernard
 Noah is a 21-year old international student from Belgium. He is relocating to Amsterdam to complete his Master’s degree attending university in a large city. His first time leaving home to live independently while working part-time, he is navigating the housing market with a tight student budget. His parents come from a lower-middle class background and can only provide minimal support for rent. 
 
@@ -41,7 +40,7 @@ James Keen is a real estate agent with a broadly European agency called “Strik
 - As a real estate agent, I want to consider the areas where housing is needed to support the growing population so I can maximize profits. 
 
 
-## Government Agency 
+## Government Agency Project Manager- Emma Maria Berg 
 Emma Maria Berg is a 30 year old project manager at the European Social Fund Plus (ESF+). 
 She graduated from the College of Europe in Bruges with a masters’ in Social Policy. Her work focuses on allocating the ESF+ fund to certain communities and distributing those to local programs. In order to create an outline of a designated budget to provide inadequate areas with the proper resources and accommodations, Emma needs a tool that can provide information on poverty, housing costs and overcrowding so that the member states’ managing authorities and policy analysts can make decisions on the best areas to allocate necessary funds.
 
