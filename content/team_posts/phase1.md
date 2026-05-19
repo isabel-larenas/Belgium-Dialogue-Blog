@@ -29,7 +29,7 @@ Noah is a 21-year old international student from Belgium. He is relocating to Am
 
 
 ## Real estate agent- James Keen
-James Keen is a real estate agent with a broadly European agency called “Strike Realty”. He has been with Strike since graduating from KU Leuven 12 years ago at 22. Now, James is 34, and has risen higher up in the company. He has been tasked with narrowing down the best markets to target across Europe. He lives in Brussels, where Strike is based, with his wife and 3 daughters. 
+James Keen is a real estate agent with a European agency called “Strike Realty”. He has been with Strike since graduating from KU Leuven 12 years ago at 22. Now, James is 34, and has risen higher up in the company. He has been tasked with narrowing down the best markets to target across Europe. He lives in Brussels, where Strike is based, with his wife and 3 daughters. 
 
 - As a real estate agent, I want to find where the most people are migrating so I can allocate resources to the area. 
 
