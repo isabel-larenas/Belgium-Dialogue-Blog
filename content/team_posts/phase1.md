@@ -13,7 +13,7 @@ authors:
 showAuthorsBadges: false
 ---
 # Project Description
-Housing in Europe has become an issue for many citizens due to a limited supply, rising costs, and reduced affordability. Using datasets from Eurostat, we want to calculate the best housing for users based on environmental factors such as crime, population, urbanness and age. Taking into account these parameters, we want to create an interactive platform where users can make informed decisions with the housing data that we provide. We will create three user personas: students/family, real estate professionals, and government agencies of which can use our program to find the best housing based on their needs and wants.
+Housing in Europe has become an issue for many citizens due to a limited supply, rising costs, and reduced affordability. Using datasets from Eurostat, EuroHome aims to calculate the best housing for users based on environmental factors such as crime, population, urbanness and age. Taking into account these parameters, we want to create an interactive platform where users can make informed decisions with the housing data that we provide. We will create three user personas: students/family, real estate professionals, and government agencies of which can use our program to find the best housing based on their needs and wants.
 	
 For students like Noah, this website would find safe, quiet, and affordable housing options plus the ability to live near campus by typing in the school address. For real estate agents like James, it highlights the best markets to target by tracking housing vacancies and investment potential. For project managers like Emma, it would map poverty rates after housing costs and overcrowding by demographic, helping direct ESF+ resources to the communities that need them most. By centralizing this data into one website, we aim to reduce the challenges in accessing housing information.
 
@@ -57,7 +57,7 @@ She graduated from the College of Europe in Bruges with a masters’ in Social P
 
 
 # Candidate Data Sources
-We collected these potential datasets from the Eurostat public database.
+We collected these potential datasets from the Eurostat public databases.
 
 [Crime, violence or vandalism in the area by degree of urbanisation](https://ec.europa.eu/eurostat/databrowser/view/ilc_mddw06/default/table?lang=en&category=hous.hous_pop.hous_ilc.hous_ilc_env)
 - Number of observations: 34,199
@@ -120,3 +120,11 @@ We collected these potential datasets from the Eurostat public database.
   - Income Quintile (quantile)
   - Household Type (hhtyp)
   - Under-Occupancy Rate (value)
+
+
+### Dataset Utility
+Aggregating the crime, pollution, and noise data provides student users with information directly relevant to their housing condition needs. The population density and poverty level related data (cost overburden, at-risk poverty rate) is useful for the governement regulator persona to track housing status and find where housing is needed most. The under-occupied households data helps real estate personas manage the platform by sorting homes on the site by the housing cost overburden rate. Lastly, the housing price index data is useful for all users as it sets the basis for affordability of housing with best the investment potential, and contributes to how data will be viewed across the platform.
+
+Accessing the API (Eurostat) is free and open for public use without rate limits. We were able to successfully send an API get request to retrieve the raw data from the dataset "Crime, violence or vandalism in the area by degree of urbanisation".
+![Screenshot of preliminary code output](Screenshot.png)
+

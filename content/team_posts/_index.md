@@ -10,5 +10,5 @@ authors:
 showAuthorsBadges : false
 ---
 
-# We are the Housing Homies
+# Team Housing Homies
 Welcome to our blog!
