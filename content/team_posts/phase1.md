@@ -17,7 +17,7 @@ Housing in Europe has become an issue for many citizens due to a limited supply,
 	
 For students like Noah, this website would find safe, quiet, and affordable housing options plus the ability to live near campus by typing in the school address. For real estate agents like James, it highlights the best markets to target by tracking housing vacancies and investment potential. For project managers like Emma, it would map poverty rates after housing costs and overcrowding by demographic, helping direct ESF+ resources to the communities that need them most. By centralizing this data into one website, we aim to reduce the challenges in accessing housing information.
 
-# User personas
+# User Personas
 ## Student- Noah Bernard
 Noah is a 21-year old international student from Belgium. He is relocating to Amsterdam to complete his Master’s degree attending university in a large city. His first time leaving home to live independently while working part-time, he is navigating the housing market with a tight student budget. His parents come from a lower-middle class background and can only provide minimal support for rent. 
 
@@ -53,3 +53,70 @@ She graduated from the College of Europe in Bruges with a masters’ in Social P
 - As a project manager, I want to see crime and pollution rates alongside poverty rates so I can identify areas where inadequate housing overlaps with social inequities. 
 
 - As a project manager, I want to track how affordable housing has changed over the years so I can track whether funding allocation is actually helping populations and regions in the EU that need it.
+
+
+
+# Candidate Data Sources
+We collected these potential datasets from the Eurostat public database.
+
+[Crime, violence or vandalism in the area by degree of urbanisation](https://ec.europa.eu/eurostat/databrowser/view/ilc_mddw06/default/table?lang=en&category=hous.hous_pop.hous_ilc.hous_ilc_env)
+- Number of observations: 34,199
+- 5 types of features:
+  - Country (geo)
+  - Year
+  - Degree of Urbanisation (degurba)
+  - Income Group (incgrp)
+  - Crime Rate (value)
+
+[Pollution, grime or other environmental problems by degree of urbanisation](https://ec.europa.eu/eurostat/databrowser/view/ilc_mddw05/default/table?lang=en&category=hous.hous_pop.hous_ilc.hous_ilc_env)
+- Number of observations: 5,680
+- 5 types of features:
+  - Country (geo)
+  - Year
+  - Degree of Urbanisation (degurba)
+  - Income Group (incgrp)
+  - Pollution Rate (value)
+
+[Noise from neighbours or from the street by degree of urbanisation](https://ec.europa.eu/eurostat/databrowser/view/ilc_mddw04__custom_21476822/default/table)
+- Number of observations: 5,680
+- 5 types of features:
+  - Country (geo)
+  - Year
+  - Degree of Urbanisation (degurba)
+  - Income Group (incgrp)
+  - Noise Rate (value)
+
+[House price index](https://ec.europa.eu/eurostat/databrowser/view/prc_hpi_inw/default/table?lang=en)
+- Number of observations: 1,922
+- 4 types of features:
+  - Country (geo)
+  - Year
+  - Purchase Type (purchtype)
+  - HPI Weight (value)
+
+[Housing cost overburden rate by age, sex and poverty status](https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho07a/default/table?lang=en&category=hous.hous_pop.hous_ilc.hous_ilc_cost)
+- Number of observations: 126,094
+- 6 types of features:
+  - Country (geo)
+  - Year
+  - Income Group (incgrp)
+  - Age Class (age)
+  - Sex (sex)
+  - Housing Cost Overburden Rate (value)
+
+[At-risk-of-poverty rate after deducting housing costs by degree of urbanisation](https://ec.europa.eu/eurostat/databrowser/view/ilc_li48/default/table?lang=en&category=hous.hous_pop.hous_ilc.hous_ilc_cost)
+- Number of observations: 3,098
+- 4 types of features:
+  - Country (geo)
+  - Year
+  - Degree of Urbanisation (degurba)
+  - Poverty Rate After Housing Costs (value)
+
+[Share of people living in under-occupied dwellings by household type and income quintile - total population](https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho50b__custom_21476751/default/table)
+- Number of observations: 44,466
+- 5 types of features:
+  - Country (geo)
+  - Year
+  - Income Quintile (quantile)
+  - Household Type (hhtyp)
+  - Under-Occupancy Rate (value)
