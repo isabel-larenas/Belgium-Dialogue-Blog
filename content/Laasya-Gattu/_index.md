@@ -1,3 +1,3 @@
 # Laasya Gattu
 
-First Year Data Science and Business Administration Major, Minor in Public Health
+Incoming Second Year Data Science and Business Administration Major, Minor in Public Health
