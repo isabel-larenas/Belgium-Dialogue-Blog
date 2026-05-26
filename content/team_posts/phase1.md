@@ -3,6 +3,7 @@ title: "Project - Phase I"
 date: 2026-05-19
 draft: false
 description: "Our first blog post"
+summary: "Using Eurostat datasets to help students, real estate agents, and government agencies find the best housing in Europe."
 slug: "phase1post"
 tags: ["project", "Setup"]
 authors:
@@ -30,7 +31,7 @@ Noah is a 21-year old international student from Belgium. He is relocating to Am
 - As a student, I need to commute to a specific campus daily, so I want to see a residence’s distance to my university's address and filter results to a range of different neighborhoods within a walkable or short transit distance, so that I only see options that are actually practical for my daily routine.
 
 
-## Real estate agent- James Keen
+## Real Estate Agent- James Keen
 James Keen is a real estate agent with a European agency called “Strike Realty”. He has been with Strike since graduating from KU Leuven 12 years ago at 22. Now, James is 34, and has risen higher up in the company. He has been tasked with narrowing down the best markets to target across Europe. He lives in Brussels, where Strike is based, with his wife and 3 daughters. 
 
 - As a real estate agent, I want to find where the most people are migrating so I can allocate resources to the area. 
