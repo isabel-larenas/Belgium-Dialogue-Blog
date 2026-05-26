@@ -18,7 +18,7 @@ Since Phase 1, we have updated each of our personas (student, real estate invest
 
 # User Personas
 ## Student- Noah Bernard
-Noah is a 21-year old international student from Belgium. He is relocating to Amsterdam to complete his Master’s degree attending university in a large city. His first time leaving home to live independently while working part-time, he is navigating the housing market with a tight student budget. His parents come from a lower-middle class background and can only provide minimal support for rent. 
+**Noah is a 21-year old international student from Belgium. He is looking to relocate to a different European country to complete his Master’s degree attending university in a large city. Both quality of life and proximity to institutions are priorities for his housing search. His first time leaving home to live independently while working part-time, he is navigating the housing market with a tight student budget. His parents come from a lower-middle class background and can only provide minimal support for rent.**
 
 - As a student, I want to be able to cap prices at my maximum budget and see which neighborhoods offer the best safety level within that price range, so that I don't waste time looking at places I can't afford. **I also want to save these filtered results to a favorites list so I can revisit them later without re-entering my criteria. I also want to review listings I may have visted or seen.**
 
@@ -67,3 +67,116 @@ This design also helps to keep the schema flexible enough to support students se
 
 # Global DDL First Pass
 <img src="/Belgium-Dialogue-Blog/images/DDL-model.png" alt="DDL Model (First Pass)" style="max-width: none !important; width: 1000px !important;">
+
+## DDL SQL 
+DROP DATABASE IF EXISTS practice;
+CREATE DATABASE IF NOT EXISTS practice;
+USE practice;
+
+
+CREATE TABLE country (
+    country_id INTEGER PRIMARY KEY,
+    country_name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE social_indicator_types (
+    sit_id INTEGER PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE social_indicator_stats (
+    stats_id INTEGER PRIMARY KEY,
+    country_id INTEGER NOT NULL,
+    sit_id INTEGER NOT NULL,
+    year YEAR,
+    value DECIMAL,
+    unit VARCHAR(50),
+
+    CONSTRAINT fk_stats_country FOREIGN KEY (country_id) REFERENCES country (country_id),
+    CONSTRAINT fk_stats_sit FOREIGN KEY (sit_id) REFERENCES social_indicator_types (sit_id)
+);
+
+INSERT INTO social_indicator_types (sit_id, name) VALUES
+(1, 'Pollution'),
+(2, 'Crime'),
+(3, 'Poverty'),
+(4, 'Overcrowding'),
+(5, 'Noise'),
+(6, 'House Price Index'),
+(7, 'Under-occupied');
+
+
+CREATE TABLE university (
+    university_id INTEGER PRIMARY KEY,
+    country_id INTEGER NOT NULL,
+    university_name VARCHAR(75) NOT NULL,
+    city_name VARCHAR(30),
+    address VARCHAR(250),
+
+    CONSTRAINT fk_uni_country FOREIGN KEY (country_id) REFERENCES country (country_id)
+);
+
+CREATE TABLE user (
+    user_id INTEGER PRIMARY KEY,
+    university_id INTEGER,
+    country_id INTEGER,
+    name VARCHAR(100),
+    role VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    max_budget DECIMAL,
+    max_distance_km DECIMAL,
+
+    CONSTRAINT fk_user_country FOREIGN KEY (country_id) REFERENCES country (country_id),
+    CONSTRAINT fk_user_uni FOREIGN KEY (university_id) REFERENCES university (university_id)
+);
+
+
+CREATE TABLE listing (
+    listing_id INTEGER PRIMARY KEY,
+    country_id INTEGER,
+    associated_university_id INTEGER,
+    user_id INTEGER,
+    price DECIMAL,
+    property_type VARCHAR(50),
+    city_name VARCHAR(50),
+
+    CONSTRAINT fk_listing_country FOREIGN KEY (country_id) REFERENCES country (country_id),
+    CONSTRAINT fk_listing_uni FOREIGN KEY (associated_university_id) REFERENCES university (university_id),
+    CONSTRAINT fk_listing_user FOREIGN KEY (user_id) REFERENCES user (user_id)
+);
+
+CREATE TABLE reviews (
+    review_id INTEGER PRIMARY KEY,
+    listing_id INTEGER NOT NULL,
+    rating INTEGER,
+    comment VARCHAR(2000),
+
+    CONSTRAINT fk_reviews_listing FOREIGN KEY (listing_id) REFERENCES listing (listing_id)
+);
+
+CREATE TABLE funding (
+    funding_id INTEGER PRIMARY KEY,
+    country_id INTEGER NOT NULL,
+    year YEAR,
+    amount DECIMAL,
+    program VARCHAR(100),
+    agency VARCHAR(100),
+
+    CONSTRAINT fk_funding_country FOREIGN KEY (country_id) REFERENCES country (country_id)
+);
+
+CREATE TABLE ml_model (
+    country_id INTEGER PRIMARY KEY,
+    year YEAR,
+    noise_rate_scaled DECIMAL,
+    pollution_rate_scaled DECIMAL,
+    crime_rate_scaled DECIMAL,
+    hpi_weight_scaled DECIMAL,
+    safety_score DECIMAL,
+    safety_index DECIMAL,
+    affordability_index DECIMAL,
+    combined_score DECIMAL,
+
+    CONSTRAINT fk_ml_country FOREIGN KEY (country_id) REFERENCES country (country_id)
+);
+
