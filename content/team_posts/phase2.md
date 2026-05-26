@@ -44,22 +44,22 @@ She graduated from the College of Europe in Bruges with a masters’ in Social P
 
 # Localized ER Models 
 ## Student 
-<img src="/images/student-er.png" alt="Student ER Diagram" style="max-width: none !important; width: 1000px !important;">
+<img src="/Belgium-Dialogue-Blog/images/student-er.png" alt="Student ER Diagram" style="max-width: none !important; width: 1000px !important;">
 
 The student ER model is based on a student entity with attributes such as user_id, name, email, max_budget, and max_distance_km. Each student is enrolled in one university (M:1), with partial participation on the student side and total participation on the university side, meaning a university must exist but a student may not yet be enrolled. The university entity is located in a country (M:1), with partial participation for university and total for country. Listings also exist within a country (M:1) and can have zero or many reviews (1:M), with partial participation for listings and total for reviews, since every review must belong to a listing. The country entity connects to social_indicator_stats (1:M) with total participation on both sides, and each social indicator stat record maps to one social_indicator_type (M:1), with total participation for stats and partial for types.
 
 ## Real Estate Agent 
-<img src="/images/real-estate-er.png" alt="Real Estate ER Diagram" style="max-width: none !important; width: 1000px !important;">
+<img src="/Belgium-Dialogue-Blog/images/real-estate-er.png" alt="Real Estate ER Diagram" style="max-width: none !important; width: 1000px !important;">
 
 The agent ER model is based on an agent entity with attributes such as user_id, name, and email. An agent creates listings (1:M), with total participation on the agent side, meaning every agent must have at least one listing. Each listing is located in a country (M:1) and can have zero or many reviews (1:M), with partial participation for both listing-to-reviews and listing-to-country. The country side follows the same social indicator structure: country has many social_indicator_stats (1:M) with total participation, and each stat is of one social_indicator_type (M:1). 
 
 ## Government Agency Project Manager
-<img src="/images/gov-er.png" alt="Government Agency (Project Manager) ER Diagram" style="max-width: none !important; width: 1000px !important;">
+<img src="/Belgium-Dialogue-Blog/images/gov-er.png" alt="Government Agency (Project Manager) ER Diagram" style="max-width: none !important; width: 1000px !important;">
 
 The government agency ER model is based on a government_agency entity with attributes such as user_id, manager's name, and email. Government agencies have a M:N relationship with country, with partial participation on both sides, meaning an agency can be associated with zero or many countries and vice versa. A separate funding entity with attributes funding_id, year, amount, program, and agency belongs to a country (M:1), with partial participation for funding and total for country. The country entity again connects to social_indicator_stats (1:M) with total participation, and each stat maps to a social_indicator_type (M:1). 
 
 ## Global ER Model 
-<img src="/images/global-er-model.png" alt="Global ER Diagram" style="max-width: none !important; width: 1000px !important;">
+<img src="/Belgium-Dialogue-Blog/images/global-er-model.png" alt="Global ER Diagram" style="max-width: none !important; width: 1000px !important;">
 
 The global model unifies all three personas into a single user entity aggregated by a role attribute. Depending on their role, a user can enroll in a university (M:1), create listings (1:M), belong to a country (M:1), or be associated with funding records (1:M). Participation is partial on most of these relationships, reflecting that not every role uses every connection.
 Country serves as the central hub, linking to listings and universities through "is in" relationships, to social_indicator_stats (1:M, total on both sides), and to funding (1:M). Each stat maps to a social_indicator_type (M:1). Listings can also have reviews (1:M), with total participation for reviews and partial for listings.
