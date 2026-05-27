@@ -61,9 +61,8 @@ The government agency ER model is based on a government_agency entity with attri
 ## Global ER Model 
 <img src="/Belgium-Dialogue-Blog/images/global-er-model.png" alt="Global ER Diagram" style="max-width: none !important; width: 1000px !important;">
 
-The global model unifies all three personas into a single user entity aggregated by a role attribute. Depending on their role, a user can enroll in a university (M:1), create listings (1:M), belong to a country (M:1), or be associated with funding records (1:M). Participation is partial on most of these relationships, reflecting that not every role uses every connection.
-Country serves as the central hub, linking to listings and universities through "is in" relationships, to social_indicator_stats (1:M, total on both sides), and to funding (1:M). Each stat maps to a social_indicator_type (M:1). Listings can also have reviews (1:M), with total participation for reviews and partial for listings.
-This design also helps to keep the schema flexible enough to support students searching for housing, agents managing listings, and government agencies tracking social indicators and funding.
+- The global model unifies all three personas into a single user entity aggregated by a role attribute. Depending on their role, a user can enroll in a university (M:1), create listings (1:M), belong to a country (M:1), or be associated with funding records (1:M). Participation is partial on most of these relationships, reflecting that not every role uses every connection. Country serves as the central hub, linking to listings and universities through "is in" relationships, to social_indicator_stats (1:M, total on both sides), and to funding (1:M). Each stat maps to a social_indicator_type (M:1). Listings can also have reviews (1:M), with total participation for reviews and partial for listings.
+- This design also helps to keep the schema flexible enough to support students searching for housing, agents managing listings, and government agencies tracking social indicators and funding.
 
 # Global DDL First Pass
 <img src="/Belgium-Dialogue-Blog/images/DDL-model.png" alt="DDL Model (First Pass)" style="max-width: none !important; width: 1000px !important;">
@@ -180,3 +179,28 @@ This design also helps to keep the schema flexible enough to support students se
     CONSTRAINT fk_ml_country FOREIGN KEY (country_id) REFERENCES country (country_id)
 );
 
+
+# Wireframes
+## Home Screen
+<img src="/Belgium-Dialogue-Blog/images/homewf.jpg" alt="Home Screen/Landing Page" style="max-width: none !important; width: 500px !important;">
+
+## Student Screen 
+### 01
+<img src="/Belgium-Dialogue-Blog/images/studentwf01.jpg" alt="Student Screen Page 01" style="max-width: none !important; width: 500px !important;">
+
+### 02
+<img src="/Belgium-Dialogue-Blog/images/studentwf02.jpg" alt="Student Screen Page 02" style="max-width: none !important; width: 500px !important;">
+
+## Real Estate Screen 
+### 01 
+<img src="/Belgium-Dialogue-Blog/images/realestatewf01.jpg" alt="Real Estate Page 01" style="max-width: none !important; width: 500px !important;">
+
+### 02
+<img src="/Belgium-Dialogue-Blog/images/realestatewf02.jpg" alt="Real Estate Page 02" style="max-width: none !important; width: 500px !important;">
+
+## Government Agency Screen 
+### 01 
+<img src="/Belgium-Dialogue-Blog/images/govwf01.jpg" alt="Government Agency Page 01" style="max-width: none !important; width: 500px !important;">
+
+### 02
+<img src="/Belgium-Dialogue-Blog/images/govwf02.jpg" alt="Government Agency Page 02" style="max-width: none !important; width: 500px !important;">
