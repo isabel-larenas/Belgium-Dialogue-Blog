@@ -219,7 +219,7 @@ We conducted the API calls through the Eurostat base link and using the individu
 
 For initial data visualizations, we hoped to see patterns among crime, pollution, and noise rates and their respective countries. This information would help inform the main questions driving our project, which is finding ideally where in Europe housing is actually affordable and livable based on personal preferences, and how that has changed over the years.
 
-- A line chart of EU averages over time to look at the trend side of the question. Crime and noise are slowly dropping, but pollution jumps around more.
+- We made a line chart of EU averages over time to look at the trend side of the question. Crime and noise are slowly dropping, but pollution jumps around more.
 <img src="/Belgium-Dialogue-Blog/images/edaviz1.png" style="max-width: none !important; width: 700px !important;">
 
 - Overlaid histograms of the noise, pollution, and crime rates so we could compare their distributions side by side
@@ -240,9 +240,12 @@ For initial data visualizations, we hoped to see patterns among crime, pollution
 
 
 ### Preliminary ML Model: K-Nearest Neighbors
+We did a k-Nearest Neighbors model to output the best recommendations of countries for the student user. After merging the datasets into one table and feature engineering to create the noise, crime, and pollution rate, as well as the safety and affordability scores that make up the combined score that users will get recommendations based on. We trained and tested the data using a 80/20 split and scaled the data using standard scaler to make sure our data was formatted consistently. Then we calculated the cosine similarity and l2-norm distances to find the best k for our model, and these are the plots the model gave us.
 
 <img src="/Belgium-Dialogue-Blog/images/cosineknn.jpeg" style="max-width: none !important; width: 700px !important;">
 <img src="/Belgium-Dialogue-Blog/images/l2knn.jpeg" style="max-width: none !important; width: 700px !important;">
+
+Based on these graphs, we determined that the best k was 5, and found the metrics that showed us the success of the model. We used the mean squared error, which was reported as 0.1212, which means our model only has about 12% error, and the r2 value was 0.6131, which means that our model captured 61% of the variance of the data.
 
 ### Future Phase III
 For our second model, we're thinking of using a linear regression model with Eurostat's housing cost overburden rate dataset, combined with demographic info, to follow housing affordability over time. We want to see which demographic factors are affecting affordability, to help government agency managers create thier funding plans to target areas needing development. For Phase III, we will need to pull and clean the two unused datasets, run similar cleaning processes, and train the linear regression model.
