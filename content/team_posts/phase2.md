@@ -76,12 +76,12 @@ The government agency ER model is based on a government_agency entity with attri
     CREATE TABLE country (
         country_id INTEGER PRIMARY KEY,
         country_name VARCHAR(30) NOT NULL
-);
+    );
 
     CREATE TABLE social_indicator_types (
         sit_id INTEGER PRIMARY KEY,
         name VARCHAR(100) NOT NULL
-);
+    );
 
     CREATE TABLE social_indicator_stats (
         stats_id INTEGER PRIMARY KEY,
@@ -93,7 +93,7 @@ The government agency ER model is based on a government_agency entity with attri
 
     CONSTRAINT fk_stats_country FOREIGN KEY (country_id) REFERENCES country (country_id),
     CONSTRAINT fk_stats_sit FOREIGN KEY (sit_id) REFERENCES social_indicator_types (sit_id)
-);
+    );
 
     INSERT INTO social_indicator_types (sit_id, name) VALUES
     (1, 'Pollution'),
@@ -113,7 +113,7 @@ The government agency ER model is based on a government_agency entity with attri
         address VARCHAR(250),
 
     CONSTRAINT fk_uni_country FOREIGN KEY (country_id) REFERENCES country (country_id)
-);
+    );
 
     CREATE TABLE user (
         user_id INTEGER PRIMARY KEY,
@@ -127,7 +127,7 @@ The government agency ER model is based on a government_agency entity with attri
 
     CONSTRAINT fk_user_country FOREIGN KEY (country_id) REFERENCES country (country_id),
     CONSTRAINT fk_user_uni FOREIGN KEY (university_id) REFERENCES university (university_id)
-);
+    );
 
 
     CREATE TABLE listing (
@@ -142,7 +142,7 @@ The government agency ER model is based on a government_agency entity with attri
     CONSTRAINT fk_listing_country FOREIGN KEY (country_id) REFERENCES country (country_id),
     CONSTRAINT fk_listing_uni FOREIGN KEY (associated_university_id) REFERENCES university (university_id),
     CONSTRAINT fk_listing_user FOREIGN KEY (user_id) REFERENCES user (user_id)
-);
+    );
 
     CREATE TABLE reviews (
         review_id INTEGER PRIMARY KEY,
@@ -151,7 +151,7 @@ The government agency ER model is based on a government_agency entity with attri
         comment VARCHAR(2000),
 
     CONSTRAINT fk_reviews_listing FOREIGN KEY (listing_id) REFERENCES listing (listing_id)
-);
+    );
 
     CREATE TABLE funding (
         funding_id INTEGER PRIMARY KEY,
@@ -162,7 +162,7 @@ The government agency ER model is based on a government_agency entity with attri
         agency VARCHAR(100),
 
     CONSTRAINT fk_funding_country FOREIGN KEY (country_id) REFERENCES country (country_id)
-);
+    );
 
     CREATE TABLE ml_model (
         country_id INTEGER PRIMARY KEY,
@@ -177,7 +177,7 @@ The government agency ER model is based on a government_agency entity with attri
         combined_score DECIMAL,
 
     CONSTRAINT fk_ml_country FOREIGN KEY (country_id) REFERENCES country (country_id)
-);
+    );
 
 
 # Wireframes
