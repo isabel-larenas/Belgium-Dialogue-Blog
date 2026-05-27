@@ -204,7 +204,3 @@ The government agency ER model is based on a government_agency entity with attri
 
 ### 02
 <img src="/Belgium-Dialogue-Blog/images/govwf02.jpg" alt="Government Agency Page 02" style="max-width: none !important; width: 500px !important;">
-
-# DS Proof Of Concept ML Model
-x
-
