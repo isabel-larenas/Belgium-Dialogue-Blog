@@ -204,3 +204,45 @@ The government agency ER model is based on a government_agency entity with attri
 
 ### 02
 <img src="/Belgium-Dialogue-Blog/images/govwf02.jpg" alt="Government Agency Page 02" style="max-width: none !important; width: 500px !important;">
+
+
+
+# DS ML Model Proof-of-Concept
+
+Since Phase 1, we updated a few of our datasets to ones that provided more relevant data to what we were looking for, but they still were the same concept. We decided to replace the initial crime, violence, or vandalism dataset with one that was [separated by degree of urbanization](https://ec.europa.eu/eurostat/databrowser/view/ilc_mddw06__custom_21597102/default/table) to stay consistent with the other three datasets. We also replaced the housing price index dataset with one that was [sorted by annual data](https://ec.europa.eu/eurostat/databrowser/view/prc_hpi_a/default/table?lang=en&category=prc.prc_hpi.prc_hpi_inx), so the time data would be consistent with the other three datasets that also had time in years.
+
+For the first ML model we decided to create a k-Nearest Neighbors model that would work as a recommender system, to help student users decide their country of interest through inputting their ideal levels of noise, pollution, crime, and budget to recieve the k number of European countries that best suit their requirements. We decided to use the 4 datasets on noise, pollution, crime, and housing price index to train this model.
+
+### API Calls and Data Cleaning
+
+We conducted the API calls through the Eurostat base link and using the individual dataset codes (publicly available) to access them. For the EDA and data cleaning, we went through the raw data and calculated some summary statistics to get a sense of the data before we manipulated it. For the cleaning, we mainly focused on dropping null rows and calculating total crime, noise, and pollution rates.
+
+For initial data visualizations, we hoped to see patterns among crime, pollution, and noise rates and their respective countries. This information would help inform the main questions driving our project, which is finding ideally where in Europe housing is actually affordable and livable based on personal preferences, and how that has changed over the years.
+
+- A line chart of EU averages over time to look at the trend side of the question. Crime and noise are slowly dropping, but pollution jumps around more.
+<img src="/Belgium-Dialogue-Blog/images/edaviz1.png" style="max-width: none !important; width: 700px !important;">
+
+- Overlaid histograms of the noise, pollution, and crime rates so we could compare their distributions side by side
+<img src="/Belgium-Dialogue-Blog/images/edaviz9.png" style="max-width: none !important; width: 700px !important;">
+
+- Horizontal bar charts per country for the most recent year for moise, pollution, and crime.
+<img src="/Belgium-Dialogue-Blog/images/edaviz2.png" style="max-width: none !important; width: 700px !important;">
+<img src="/Belgium-Dialogue-Blog/images/edaviz3.png" style="max-width: none !important; width: 700px !important;">
+<img src="/Belgium-Dialogue-Blog/images/edaviz4.png" style="max-width: none !important; width: 700px !important;">
+
+- Box plots split by degree of urbanization to check whether cities, towns, and rural areas report different rates. They do — cities come out worst across all three categories.
+<img src="/Belgium-Dialogue-Blog/images/edaviz5.png" style="max-width: none !important; width: 700px !important;">
+<img src="/Belgium-Dialogue-Blog/images/edaviz6.png" style="max-width: none !important; width: 700px !important;">
+<img src="/Belgium-Dialogue-Blog/images/edaviz7.png" style="max-width: none !important; width: 700px !important;">
+
+- A multi-line HPI plot with faded lines so 30 overlapping countries are still readable. Almost every country's prices have shot up well past their 2010 level.
+<img src="/Belgium-Dialogue-Blog/images/edaviz8.png" style="max-width: none !important; width: 700px !important;">
+
+
+### Preliminary ML Model: K-Nearest Neighbors
+
+<img src="/Belgium-Dialogue-Blog/images/cosineknn.jpeg" style="max-width: none !important; width: 700px !important;">
+<img src="/Belgium-Dialogue-Blog/images/l2knn.jpeg" style="max-width: none !important; width: 700px !important;">
+
+### Future Phase III
+For our second model, we're thinking of using a linear regression model with Eurostat's housing cost overburden rate dataset, combined with demographic info, to follow housing affordability over time. We want to see which demographic factors are affecting affordability, to help government agency managers create thier funding plans to target areas needing development. For Phase III, we will need to pull and clean the two unused datasets, run similar cleaning processes, and train the linear regression model.
