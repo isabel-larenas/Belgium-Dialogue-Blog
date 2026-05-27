@@ -216,36 +216,42 @@ For the first ML model we decided to create a k-Nearest Neighbors model that wou
 ### API Calls and Data Cleaning
 
 We conducted the API calls through the Eurostat base link and using the individual dataset codes (publicly available) to access them. For the EDA and data cleaning, we went through the raw data and calculated some summary statistics to get a sense of the data before we manipulated it. For the cleaning, we mainly focused on dropping null rows and calculating total crime, noise, and pollution rates.
+<img src="/Belgium-Dialogue-Blog/images/eda.png" style="max-width: none !important; width: 700px !important;">
+<img src="/Belgium-Dialogue-Blog/images/eda2.png" style="max-width: none !important; width: 700px !important;">
 
-For initial data visualizations, we hoped to see patterns among crime, pollution, and noise rates and their respective countries. This information would help inform the main questions driving our project, which is finding ideally where in Europe housing is actually affordable and livable based on personal preferences, and how that has changed over the years.
+For initial data visualizations, we hoped to see patterns among crime, pollution, and noise rates and their respective countries. This information would help inform the main questions driving our project, which is finding ideally where in Europe housing is actually affordable and livable based on environamental factors and personal preferences, and how that has changed over the years.
 
-- We made a line chart of EU averages over time to look at the trend side of the question. Crime and noise are slowly dropping, but pollution jumps around more.
+- Line chart of EU average data shows how crime, pollution, and noise change over time realtive to each other. Crime and noise are slowly dropping, but pollution has more variation. This provides a high-level overview of what the rates looked like in the past, and may be beneficial to creating a prediction model for prediction future noise, crime, and pollution rates overall.
 <img src="/Belgium-Dialogue-Blog/images/edaviz1.png" style="max-width: none !important; width: 700px !important;">
 
-- Overlaid histograms of the noise, pollution, and crime rates so we could compare their distributions side by side
+- Overlayed histogram visulizations of the noise, pollution, and crime rates so we could compare their distributions side by side. All three rates are right-skewed, meaning most countries cluster at lower rates with a few high outliers. Crime has the tightest distribution, making it possibly the most accurately predictable feature.
 <img src="/Belgium-Dialogue-Blog/images/edaviz9.png" style="max-width: none !important; width: 700px !important;">
 
-- Horizontal bar charts per country for the most recent year for moise, pollution, and crime.
+- Horizontal bar charts per country for the most recent year for moise, pollution, and crime. Luxembourg and Austria consistently rank high for both noise and crime. Albania ranks lowest across all three metrics but that may reflect underreporting rather than truly better conditions, as it falls at the bottom in all three plots. Romania is also a clear outlier for pollution at 44%.
 <img src="/Belgium-Dialogue-Blog/images/edaviz2.png" style="max-width: none !important; width: 700px !important;">
 <img src="/Belgium-Dialogue-Blog/images/edaviz3.png" style="max-width: none !important; width: 700px !important;">
 <img src="/Belgium-Dialogue-Blog/images/edaviz4.png" style="max-width: none !important; width: 700px !important;">
 
-- Box plots split by degree of urbanization to check whether cities, towns, and rural areas report different rates. They do — cities come out worst across all three categories.
+- Box plots split by degree of urbanization to check whether cities, towns, and rural areas report different rates. Cities are significantly worse than towns and rural areas across all three metrics, with much wider variance. This suggests that an urbanization filter by degurba (degree of urbanization) = Cities/Towns and Suburbs/Rural areas for student users would be beneficial to separate country/national averages from more local reality.
 <img src="/Belgium-Dialogue-Blog/images/edaviz5.png" style="max-width: none !important; width: 700px !important;">
 <img src="/Belgium-Dialogue-Blog/images/edaviz6.png" style="max-width: none !important; width: 700px !important;">
 <img src="/Belgium-Dialogue-Blog/images/edaviz7.png" style="max-width: none !important; width: 700px !important;">
 
-- A multi-line HPI plot with faded lines so 30 overlapping countries are still readable. Almost every country's prices have shot up well past their 2010 level.
+- A multi-line Housing Price Index plot with overlapping lines for each country. Almost every country's prices shot up well past the inital 2010 level. Turkey's spike is an outlier and might need to be be removed. Once filtered, the chart will be useful for the real estate agent's investment model to identify countries with steady housing price index growth.
 <img src="/Belgium-Dialogue-Blog/images/edaviz8.png" style="max-width: none !important; width: 700px !important;">
 
 
 ### Preliminary ML Model: K-Nearest Neighbors
-We did a k-Nearest Neighbors model to output the best recommendations of countries for the student user. After merging the datasets into one table and feature engineering to create the noise, crime, and pollution rate, as well as the safety and affordability scores that make up the combined score that users will get recommendations based on. We trained and tested the data using a 80/20 split and scaled the data using standard scaler to make sure our data was formatted consistently. Then we calculated the cosine similarity and l2-norm distances to find the best k for our model, and these are the plots the model gave us.
+From the individual cleaned datasets, we aggregated the data from each into an individual noise_rate, crime_rate, and pollution_rate that would set us up for the model. For example, in the noise table we used groupby to group together all columns aside from country and year, then average all of the noise_rate across them, so we got one totaled noise_rate value per country per year. This was one of our challenges initially because merging the tables without aggregating the values would have given us a row explosion in our final csv files.
 
-<img src="/Belgium-Dialogue-Blog/images/cosineknn.jpeg" style="max-width: none !important; width: 700px !important;">
-<img src="/Belgium-Dialogue-Blog/images/l2knn.jpeg" style="max-width: none !important; width: 700px !important;">
+After this, we merged the datasets into one table and did some feature engineering to create the noise, crime, and pollution rate, as well as the safety and affordability scores that make up the combined score that users will get recommendations based on. The safety score was calculated with the mean of noise + pollution + crime, and affordability was calculated by the housing price index. Additionally, we scaled the data using standard scaler to make sure our data was formatted consistently. We also had to flip the index of the scores so a lower initial score would return as a positive number, so users would interpret it as a good match.
+<img src="/Belgium-Dialogue-Blog/images/mergedcsv.png" style="max-width: none !important; width: 700px !important;">
 
-Based on these graphs, we determined that the best k was 5, and found the metrics that showed us the success of the model. We used the mean squared error, which was reported as 0.1212, which means our model only has about 12% error, and the r2 value was 0.6131, which means that our model captured 61% of the variance of the data.
+We trained and tested the data using a 80/20 split and refit the scaler on the training data. Then we calculated the cosine similarity and l2-norm distances to find the best k for our model, and these are the plots the model gave us.
+
+<img src="/Belgium-Dialogue-Blog/images/cosineknn.jpeg" style="max-width: none !important; width: 600px !important;"><img src="/Belgium-Dialogue-Blog/images/l2knn.jpeg" style="max-width: none !important; width: 600px !important;">
+
+Based on these graphs, we determined that the best k was 5, and found the metrics that showed us the success of the model. We used the mean squared error, which was reported as 0.1212, which means our model only has about 12% error, and the r2 value was 0.6131, which means that our model captured 61% of the variance of the data. While not ideal, these metrics show a decent success rate for a first attempt. We hope to improve this if possible.
 
 ### Future Phase III
 For our second model, we're thinking of using a linear regression model with Eurostat's housing cost overburden rate dataset, combined with demographic info, to follow housing affordability over time. We want to see which demographic factors are affecting affordability, to help government agency managers create thier funding plans to target areas needing development. For Phase III, we will need to pull and clean the two unused datasets, run similar cleaning processes, and train the linear regression model.
