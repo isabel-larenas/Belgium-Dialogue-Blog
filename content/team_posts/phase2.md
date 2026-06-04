@@ -222,23 +222,23 @@ We conducted the API calls through the Eurostat base link and using the individu
 For initial data visualizations, we hoped to see patterns among crime, pollution, and noise rates and their respective countries. This information would help inform the main questions driving our project, which is finding ideally where in Europe housing is actually affordable and livable based on environamental factors and personal preferences, and how that has changed over the years.
 
 - Line chart of EU average data shows how crime, pollution, and noise change over time realtive to each other. Crime and noise are slowly dropping, but pollution has more variation. This provides a high-level overview of what the rates looked like in the past, and may be beneficial to creating a prediction model for prediction future noise, crime, and pollution rates overall.
-<img src="/Belgium-Dialogue-Blog/images/edaviz1.png" style="max-width: none !important; width: 700px !important;">
+{{< iframe src="plots/eu_trend.html" width="150%" height="400" >}}
 
 - Overlayed histogram visulizations of the noise, pollution, and crime rates so we could compare their distributions side by side. All three rates are right-skewed, meaning most countries cluster at lower rates with a few high outliers. Crime has the tightest distribution, making it possibly the most accurately predictable feature.
-<img src="/Belgium-Dialogue-Blog/images/edaviz9.png" style="max-width: none !important; width: 700px !important;">
+{{< iframe src="plots/distribution.html" width="150%" height="400" >}}
 
 - Horizontal bar charts per country for the most recent year for moise, pollution, and crime. Luxembourg and Austria consistently rank high for both noise and crime. Albania ranks lowest across all three metrics but that may reflect underreporting rather than truly better conditions, as it falls at the bottom in all three plots. Romania is also a clear outlier for pollution at 44%.
-<img src="/Belgium-Dialogue-Blog/images/edaviz2.png" style="max-width: none !important; width: 700px !important;">
-<img src="/Belgium-Dialogue-Blog/images/edaviz3.png" style="max-width: none !important; width: 700px !important;">
-<img src="/Belgium-Dialogue-Blog/images/edaviz4.png" style="max-width: none !important; width: 700px !important;">
+{{< iframe src="plots/noise_rate.html" width="150%" height="400" >}}
+{{< iframe src="plots/pollution_rate.html" width="150%" height="400" >}}
+{{< iframe src="plots/crime_rate.html" width="150%" height="400" >}}
 
 - Box plots split by degree of urbanization to check whether cities, towns, and rural areas report different rates. Cities are significantly worse than towns and rural areas across all three metrics, with much wider variance. This suggests that an urbanization filter by degurba (degree of urbanization) = Cities/Towns and Suburbs/Rural areas for student users would be beneficial to separate country/national averages from more local reality.
-<img src="/Belgium-Dialogue-Blog/images/edaviz5.png" style="max-width: none !important; width: 700px !important;">
-<img src="/Belgium-Dialogue-Blog/images/edaviz6.png" style="max-width: none !important; width: 700px !important;">
-<img src="/Belgium-Dialogue-Blog/images/edaviz7.png" style="max-width: none !important; width: 700px !important;">
+{{< iframe src="plots/noise_urbanisation.html" width="150%" height="400" >}}
+{{< iframe src="plots/pollution_urbanisation.html" width="150%" height="400" >}}
+{{< iframe src="plots/crime_urbanisation.html" width="150%" height="400" >}}
 
 - A multi-line Housing Price Index plot with overlapping lines for each country. Almost every country's prices shot up well past the inital 2010 level. Turkey's spike is an outlier and might need to be be removed. Once filtered, the chart will be useful for the real estate agent's investment model to identify countries with steady housing price index growth.
-<img src="/Belgium-Dialogue-Blog/images/edaviz8.png" style="max-width: none !important; width: 700px !important;">
+{{< iframe src="plots/hpi_trend.html" width="150%" height="400" >}}
 
 
 ### Preliminary ML Model: K-Nearest Neighbors
