@@ -4,7 +4,7 @@ date: 2026-06-03
 draft: false
 description: "Project updates for phase III"
 summary: "Began building our web-app and continued work on our ML models"
-slug: "phase2post"
+slug: "phase3post"
 tags: ["project"]
 authors:
   - "geo-thatch"
