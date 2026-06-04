@@ -249,7 +249,8 @@ After this, we merged the datasets into one table and did some feature engineeri
 
 We trained and tested the data using a 80/20 split and refit the scaler on the training data. Then we calculated the cosine similarity and l2-norm distances to find the best k for our model, and these are the plots the model gave us.
 
-<img src="/Belgium-Dialogue-Blog/images/cosineknn.jpeg" style="max-width: none !important; width: 600px !important;"><img src="/Belgium-Dialogue-Blog/images/l2knn.jpeg" style="max-width: none !important; width: 600px !important;">
+<img src="/Belgium-Dialogue-Blog/images/cosineknn.jpeg" style="max-width: none !important; width: 600px !important;">
+<img src="/Belgium-Dialogue-Blog/images/l2knn.jpeg" style="max-width: none !important; width: 600px !important;">
 
 Based on these graphs, we determined that the best k was 5, and found the metrics that showed us the success of the model. We used the mean squared error, which was reported as 0.1212, which means our model only has about 12% error, and the r2 value was 0.6131, which means that our model captured 61% of the variance of the data. While not ideal, these metrics show a decent success rate for a first attempt. We hope to improve this if possible.
 
