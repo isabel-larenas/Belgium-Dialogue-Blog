@@ -6,7 +6,7 @@ description: "What I worked on in phase 3!"
 slug: "blog3-geo"   # if you use, needs to be different for every post
 tags: ["authors", "config", "docs"]
 authors:
-  - "geo thatch"
+  - "geo-thatch"
 showAuthorsBadges : false
 ---
 # What I worked on
