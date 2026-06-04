@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "Project - Phase III"
+=======
+title: "Project - Phase II"
+>>>>>>> 920f4d235c1dd200a75a80535d4282d11bf4a506
 date: 2026-06-03
 draft: false
 description: "Project updates for phase III"

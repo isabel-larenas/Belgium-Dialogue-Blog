@@ -1,3 +1,3 @@
-# A New Guy
+# Isabel Larenas
 
-This guys is fake, he doesn't even go to school here.
+Incoming third year Computer Science major with a minor in Spanish
