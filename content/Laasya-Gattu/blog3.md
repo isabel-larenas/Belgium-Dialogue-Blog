@@ -1,6 +1,6 @@
 ---
 title: "Blog Post 3"
-date: 2026-06-05
+date: 2026-06-03
 draft: false
 description: "Phase 3 Update"
 slug: "blog3"   # if you use, needs to be different for every post

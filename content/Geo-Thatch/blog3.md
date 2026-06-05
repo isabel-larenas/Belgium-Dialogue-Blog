@@ -1,9 +1,9 @@
 ---
 title: "Phase 3 Blog Post"
-date: 2026-06-05
+date: 2026-06-03
 draft: false
 description: "What I worked on in phase 3!"
-slug: "blog3-geo-thatch"   # if you use, needs to be different for every post
+slug: "blog3-geo-thatch"
 tags: ["authors", "config", "docs"]
 authors:
   - "geo-thatch"
