@@ -67,7 +67,10 @@ This gives government agencies a data visualization to see which countries need 
 | /review                              | retrieve review(s)                      | create new review        | update old review       | delete old review        |
 | /funding                             | retrieve funding                        | NA                       | NA                      | NA                       |
 | /funding-draft                       | retrieve funding drafts                 | create new funding draft | update funding-draft    | delete old funding-draft |
-
+| student/train                        | NA                                      | adds the training data to database | | |
+| student/test    | retrieves the mean squared error and r2                    | NA                                 | | |
+| student/predict | NA                                                         | adds predicted data to database    | | |
+| student/params  | retrieves student_id, scalar_std, scalar_mean, beta_values | NA                                 | | |
 
 This table represents all routes used in our project. For a parameter like country, the users can only interact with the data through reading, since the list is set and cannot be changed in any way. However, for listings, reviews, or funding-drafts, the databases can be added to, updated, or deleted at any time. The user table can be updated, but with our limited knowledge we aren’t working with user creation or deletion currently. Country, user, university, and listing/cities routes are all used primarily for filtering in both real estate and student personas. Social_indicator_stats are largely used in the government agency persona, for both the tables and the heat map. Reviews are viewable for the student, after clicking on a specific listing. Funding is an accessable data set of previous money allocated towards housing or community programs, and funding-drafts is a chance for a government agent to plan out a potential future funding plan for a specific country. 
 
