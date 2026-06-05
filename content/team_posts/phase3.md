@@ -29,7 +29,22 @@ We also ran assumption checks on this model. The residuals vs. y hat values plot
 Overall, we may need to do some further fine tuning on this model to improve the metrics, but the progress has been good so far.
 
 ## 2nd ML Model
+For Phase 3, we built a second ML model for Emma's persona, a government project manager who needs to figure out which EU countries are at the highest risk of housing deprivation so she can direct ESF+ funding to the right places. The model uses two Eurostat datasets: [immigration inflow by country and year](https://ec.europa.eu/eurostat/databrowser/view/tps00176/default/table?lang=en), and [severe housing deprivation rate](https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho50b/default/table?lang=en).
 
+Before building the model we did some EDA to better understand the data. The plots below show how the EU average deprivation rate has changed over time and how much it varies by country. Some countries like Cyprus and Spain have much higher rates than others like Romania and Montenegro.
+
+{{< iframe src="plots/eu_avg_housing_deprivation.html" width="150%" height="400" >}}
+{{< iframe src="plots/housing_deprivation_by_country.html" width="150%" height="400" >}}
+
+To prepare the data, we called the Eurostat API for both datasets, cleaned them by dropping EU-level aggregates and keeping only total population rows, and merged them by country and year. For feature engineering, we log-transformed the immigration counts since the raw values were really skewed by large countries like Germany, created a one-year lag so the model uses last year's immigration to predict this year's deprivation, and added a dummy variable for each country to account for each country's baseline deprivation level. The model was trained using the normal equation and got an R² of 0.9816 and an MSE of 6.9064.
+
+<img src="/Belgium-Dialogue-Blog/images/deprivation_rate_linreg.png" style="max-width: none !important; width: 700px !important;">
+
+The output of the model is a ranking of countries by predicted deprivation rate, which is what would show up on Emma's page.
+
+{{< iframe src="plots/predicted_housing_deprivation_by_country.html" width="150%" height="400" >}}
+
+This gives government agencies a data visualization to see which countries need the most housing support.
 
 # REST API matrix
 |                                      | GET                                     | POST                     | PUT                     | DELETE                   |
