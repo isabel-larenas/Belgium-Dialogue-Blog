@@ -21,11 +21,14 @@ Since Phase 2, our ML models changed fairly significantly. Using the feedback pr
 
 To implement this updated model, we sourced a new dataset from Eurostat, [overall life satisfaction by age, sex, and education](https://ec.europa.eu/eurostat/databrowser/view/ilc_pw01$dv_2761/default/table?lang=en&category=qol.qol_lif.qol_life_sat), which gave us the values on which we could train the model on and then run a prediction. We then conducted the same data cleaning and merging processes as we did on the previous datasets. 
 
-When training the model, we had a few difficulties acheiving a good r2 score, and ended up settling with an r2 of 0.27. While not ideal, we experimented with different feature engineering strategies to see if that number could improve. Although we attempted squaring column values to try polynomial features and interaction terms (such as crime x degree of urbanization_rural, noise x degree of urbanization_towns and suburbs, etc.), but not much seemed to have an impact. We stuck with the initial features of crime_rate, noise_rate, pollution_rate, hpi_weight, and deg_urb (dummy versions of variable) because these seemed the most relevant to user preferences and made the most sense in terms of the model performance. 
+{{< iframe src="plots/correlation_heatmap.html" width="150%" height="400" >}}
+
+When training the model, we had a few difficulties acheiving a good r2 score, and initially had an r2 of 0.16. While definitely not ideal, we experimented with different feature engineering strategies to see if that number could improve. Although we attempted squaring column values to try polynomial features and interaction terms (such as crime x degree of urbanization_rural, noise x degree of urbanization_towns and suburbs, etc.), and they helped partially but nothing significant. However, the combinations of variables crime x noise, crime x pollution, crime x hpi, and pollution x noise were an improvement. So, with these along with the initial features of crime_rate, noise_rate, pollution_rate, hpi_weight, and deg_urb (dummy versions of variable) we brought up the r2 to 0.31 and got a MSE of 0.14. These features seemed the most relevant to user preferences and made the most sense in terms of the model performance. 
+<img src="/Belgium-Dialogue-Blog/images/linreg1.png" style="max-width: none !important; width: 500px !important;">
 
 We also ran assumption checks on this model. The residuals vs. y hat values plot shows a clear upward trend; as the fitted values increase, the residuals also tend to increase, which means the model may be  underpredicting for higher satisfaction scores and overpredicting for lower ones. This indicates the linearity assumption is violated and suggests the relationship between the housing features and life satisfaction may not fully captured by a linear model. There also appears to be slight heteroscedasticity because the variance of the residuals is not constant across the range of y hat values. However, the residuals vs. order plot looks much better. The residuals appear randomly scattered around 0 with no consistent upward or downward trend across the index, suggesting that autocorrelation is not occuring within this model.
-![image](https://isabel-larenas.github.io/Belgium-Dialogue-Blog/images/assump1_linreg.jpeg)
-![image](https://isabel-larenas.github.io/Belgium-Dialogue-Blog/images/assump2_linreg.jpeg)
+<img src="/Belgium-Dialogue-Blog/images/assump1_linreg.png" style="max-width: none !important; width: 500px !important;">
+<img src="/Belgium-Dialogue-Blog/images/assump2_linreg.png" style="max-width: none !important; width: 500px !important;">
 Overall, we may need to do some further fine tuning on this model to improve the metrics, but the progress has been good so far.
 
 ## 2nd ML Model
@@ -88,5 +91,11 @@ This screen is a visual representation of a social-indicator (in this case, poll
 ![image](https://isabel-larenas.github.io/Belgium-Dialogue-Blog/images/web-app6.png)
 This table shows the same data as the map, but in a more specific way, with the percentages listed next to the countries, which are ranked in order of highest to lowest. Again, this is a good way to show which countries are struggling the most in any given area, and where future funding should be directed. 
 
+<img src="/Belgium-Dialogue-Blog/images/web-app7.jpeg" style="max-width: none !important; width: 670px !important;">
+Last but not least, this page is one of those for the student persona, specifically the ML-implemented prediction page. The user inputs their desired values through sliders and are provided with a prediction of overall life satisfaction rating using the deployed ML model. Aesthetically, this screen will continue to be improved and we will be adding additional statistics to filter by country that students will be able to view.
+
+
+# 
 # Conclusion
+
 This week, we made significant progress towards are end goal of a fully functioning web-app. Now that we have routes, building the rest of the app is primarily reliant on the streamlit code, which means that the bulk of the data processing with the API is finished. In terms of the ML models, we have one fully successful ML model and one proof of concept to continue working on in this next week. Next week, we will be fully expanding to complete all of our wireframes and hopefully fulfill the last of our user stories. 
