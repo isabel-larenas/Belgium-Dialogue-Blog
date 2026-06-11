@@ -44,7 +44,7 @@ The newest tables are `gov_model_params` to support the deployment of our newest
 
 The `student_model_params` and `gov_model_params` tables were added to store trained ML model parameters (beta values, scaler mean, and scaler standard deviation) so that predictions can be displayed without retraining on every request. This was a key architectural decision that allowed us to separate training from inference. 
 
-We added `created_at` and `updated_at` audit fields to tables where users can create features, such as reviews in the student pages, listings in the real estate pages, and funding drafts in the government agency page. This internal audit allows us to track when drafts were created and last modified.
+We added `created_at` and `updated_at` audit fields to tables where users can create features, such as reviews and favorites in the student pages, listings in the real estate pages, and funding drafts in the government agency page. This internal audit allows us to track when drafts were created and last modified.
 
 Our stimulated data was also a significant addition in this phase. Tables such as `listings`, `favorites`, `reviews`, and the `funding_draft` tables were populated with much more mock data. Unlike the `funding` table which holds real historical funding data, `funding_draft` is user-generated and tied to a specific `user_id`, which allows government agency users to propose and manage their own funding plans independently on their own account. This also applies to the other tables just mentioned.
 
