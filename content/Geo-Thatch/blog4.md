@@ -1,6 +1,6 @@
 ---
 title: "Phase 4 Blog Post"
-date: 2026-06-012
+date: 2026-06-12
 draft: false
 description: "What I worked on in phase 4!"
 slug: "blog4-geo-thatch"
