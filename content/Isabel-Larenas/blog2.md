@@ -3,6 +3,7 @@ title: "Blog Post 2"
 date: 2026-05-27
 draft: false
 description: "Another test"
+summary: Checkout my second blog post!
 slug: "blog2"   # if you use, needs to be different for every post
 tags: ["authors", "config", "docs"]
 authors:
