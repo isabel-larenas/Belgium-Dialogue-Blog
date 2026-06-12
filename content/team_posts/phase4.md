@@ -143,7 +143,7 @@ This architecture means the frontend, backend, and database are fully independen
 This model serves our student user persona with the goal of finding which European countries would offer the highest quality of life based on housing and environmental conditions. It predicts each country's **life satisfaction score** (1–10) for young adults aged 16–29 with tertiary (highest) education level based on housing indicators, and then **adjusts rankings based on the user's personal priorities**, so a student can see which countries best match what matters most to them.
 
 ### Data & Features
-The model trains on `merged2.csv` (774 country-year-urbanisation rows across 30 European countries) created by merging five Eurostat tables on country, year, and degree of urbanisation. The target is `happy_rate` — mean life satisfaction from Eurostat's quality of life survey, filtered to ages 16–29 with tertiary education level. The features for this model are:
+The model trains on `merged2.csv` (774 country-year-urbanisation rows across 30 European countries) created by merging five Eurostat tables on country, year, and degree of urbanisation. The target is `happy_rate`- mean life satisfaction from Eurostat's quality of life survey, filtered to ages 16–29 with tertiary education level. The features for this model are:
 
 | Feature | Description |
 |--|--|
@@ -153,7 +153,7 @@ The model trains on `merged2.csv` (774 country-year-urbanisation rows across 30 
 | **HPI weight** | housing price index annual rate of change- how fast housing costs are rising or falling |
 | **Degree of urbanisation** | dummy encoded as Cities (baseline), Towns & Suburbs, and Rural Areas within each environmental dataset |
 
-The model also has four interaction terms of `crime × noise`, `pollution × noise`, `crime × HPI`, and `pollution × crime`, bringing the total to ten features. We included these interaction terms because a correlation matrix (see below) showed that the environmental features had moderate individual correlations with satisfaction, but their combined effects — such as high crime in a noisy area being worse than either alone — were not captured by the base features. Adding the interaction terms improved R² from 0.24 to 0.31.
+The model also has four interaction terms of `crime × noise`, `pollution × noise`, `crime × HPI`, and `pollution × crime`, bringing the total to ten features. We included these interaction terms because a correlation matrix (see below) showed that the environmental features had moderate individual correlations with satisfaction, but their combined effects, such as high crime in a noisy area being worse than either alone, were not captured by the base features. Adding the interaction terms improved R² from 0.24 to 0.31.
 
 {{< iframe src="plots/correlation_heatmap.html" width="100%" height="400" >}}
 
