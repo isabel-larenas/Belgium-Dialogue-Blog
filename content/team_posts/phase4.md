@@ -134,7 +134,7 @@ This architecture means the frontend, backend, and database are fully independen
 
 > The student model achieved an R² of 0.31 and MSE of 0.14.
 
-> The government model achieved an R² of 0.42 and MSE of 6.91.
+> The government model achieved an R² of 0.42 and MSE of 24.5.
 
 ## Model 1: Student Linear Regression
 
@@ -146,8 +146,35 @@ This architecture means the frontend, backend, and database are fully independen
 
 ## Model 2: Government Agency Linear Regression
 
+This model serves our government agency user persona with the goal of finding which European countries are in most need of housing funding. It predicts each country's **housing deprivation rate** which is the percent of people living in overcrowded housing or poor living conditions based on socioeconomic indicators, so a **higher prediction** creates a **stronger need for funding**.
 
+### Data & Features
+The model trains on `merged_linreg.csv` (642 country-year rows across 27 European countries, 2014–2023) created by merging Eurostat tables on country and year. The target is `deprivation_rate`. The features for this model are:
 
+| Feature	| Description |
+|--|--|
+| **Immigration**	| total number of people that immigrated to the country in a given year |
+| **Housing-cost overburden**	| percent of the population spending more than 40% of their disposable income on housing costs like rent, utilities, and maintenance |
+| **GDP per capita** | the total economic output of a country divided by its population, used as a measure of a country's overall wealth and standard of living |
+| **Population density** | the number of people living per square kilometer in a country |
+| **Unemployment rate** |	percent of the working-age population that is actively looking for work but does not have a job |
+
+The model also has three interaction terms of `density × unemployment`, `gdp × unemployment`, and `density × overburden`, bringing the total to eight features. I included these interaction terms because I used a correlation matrix (see below) to see how I could improve the model and did feature engineering, which improved the model by 5%.
+
+{{< iframe src="plots/gov_correlation_heatmap.html" width="100%" height="400" >}}
+
+### Performance
+The model explains **~42% of the variance** (the r-squared) in housing deprivation, based on our five features and their interaction terms. The MSE of ~24.5 might seem high at first, but deprivation is measured on a 0 to 100 scale, so the errors are spread across a much larger range of values. On average, this comes out to the model being off by about 5 percentage points. This model is meant to rank which countries need the most support rather than predict an exact number, so I would say this level of accuracy is good enough for the purpose it holds.
+
+To check the model's assumptions, we looked at how the residuals behaved against the predicted deprivation rates. The residuals stayed fairly balanced around 0 with no clear pattern as the fitted values changed, so linearity looks like a reasonable assumption here and the model is not leaning high or low at either end. The one thing we noticed is that the residuals were tightly clustered for countries with low predicted deprivation and became more spread out as the predicted values got higher. This points to some heteroscedasticity in the model, meaning its predictions are more consistent for lower-deprivation countries and less certain for higher-deprivation countries.
+
+<img src="/Belgium-Dialogue-Blog/images/gov_linreg.png" style="max-width: none !important; width: 500px !important;">
+<img src="/Belgium-Dialogue-Blog/images/gov_residuals.png" style="max-width: none !important; width: 500px !important;">
+
+### What the Agency Sees
+In EuroHome, the Housing Deprivation Predictor has two features:
+- A **Predicted Deprivation Heatmap** where the government agency can visulize where housing funding is most needed based on which countries are indicated as a darker red.
+- An **ordered table** listing in order the countries that need the most funding and its respective predicted housing deprivation rate.
 
 ---
 
