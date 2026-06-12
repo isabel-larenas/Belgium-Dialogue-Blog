@@ -136,9 +136,53 @@ This architecture means the frontend, backend, and database are fully independen
 
 > The government model achieved an R² of 0.42 and MSE of 24.5.
 
-## Model 1: Student Linear Regression
+---
 
+## Model 1: Student Life Satisfaction Linear Regression
 
+This model serves our student user persona with the goal of finding which European countries would offer the highest quality of life based on housing and environmental conditions. It predicts each country's **life satisfaction score** (1–10) for young adults aged 16–29 with tertiary (highest) education level based on housing indicators, and then **adjusts rankings based on the user's personal priorities**, so a student can see which countries best match what matters most to them.
+
+### Data & Features
+The model trains on `merged2.csv` (774 country-year-urbanisation rows across 30 European countries) created by merging five Eurostat tables on country, year, and degree of urbanisation. The target is `happy_rate` — mean life satisfaction from Eurostat's quality of life survey, filtered to ages 16–29 with tertiary education level. The features for this model are:
+
+| Feature | Description |
+|--|--|
+| **Crime rate** | percent of the population reporting crime, violence, or vandalism in their area |
+| **Noise rate** | percent of the population reporting noise from neighbours or the street |
+| **Pollution rate** | percent of the population reporting pollution, grime, or other environmental problems |
+| **HPI weight** | housing price index annual rate of change- how fast housing costs are rising or falling |
+| **Degree of urbanisation** | dummy encoded as Cities (baseline), Towns & Suburbs, and Rural Areas within each environmental dataset |
+
+The model also has four interaction terms of `crime × noise`, `pollution × noise`, `crime × HPI`, and `pollution × crime`, bringing the total to ten features. We included these interaction terms because a correlation matrix (see below) showed that the environmental features had moderate individual correlations with satisfaction, but their combined effects — such as high crime in a noisy area being worse than either alone — were not captured by the base features. Adding the interaction terms improved R² from 0.24 to 0.31.
+
+{{< iframe src="plots/correlation_heatmap.html" width="100%" height="400" >}}
+
+### Performance
+The model explains **~31% of the variance** (the R²) in life satisfaction, based on our six features and their interaction terms. The **MSE of ~0.15** is relatively low given that satisfaction scores in the dataset range from 6.2 to 8.6. On average, the model's predictions are off by about 0.39 points on a 10-point scale. While an R² of 0.31 might seem modest, self-reported life satisfaction ratings can be influenced by many factors outside housing (such as employment, healthcare, cultural norms, political stability), so explaining over a quarter of the variation using just housing and environmental data can make a decent prediction model.
+
+To check the model's assumptions, we looked at how the residuals compared against the predicted satisfaction scores. The residuals vs. fitted values plot showed a slight upward trend, suggesting that the linearity assumption is not perfectly met; the model tends to underpredict for countries with higher satisfaction and overpredict for lower ones. There was also a mild funnel shape indicating some heteroscedasticity. The residuals vs. order plot looked better, with no consistent trend across the index, suggesting autocorrelation is not a major concern. Overall, the model is reasonable as a ranking tool even if the linear assumptions are not perfectly satisfied.
+
+<img src="/Belgium-Dialogue-Blog/images/linreg1.png" style="max-width: none !important; width: 500px !important;">
+<img src="/Belgium-Dialogue-Blog/images/assump1_linreg.png" style="max-width: none !important; width: 500px !important;">
+
+### How User Preferences Affect Rankings
+Instead of simply providing the user with a static rating value, the student model adds a **preference layer** on top of the base predictions. The sliders on the prediction page represent how much each environmental factor matters to the user personally, ranging from 0 ("I don't care about this at all") to 100 ("this is extremely important to me").
+
+When the user submits their preferences, the system first runs the trained model on each country's real Eurostat data to produce a base satisfaction score. It then applies a penalty to each country proportional to how bad that country performs on the factors the user cares about most:
+
+    penalty_crime     = (slider_crime / 100) × (country_crime / max_crime)
+    penalty_noise     = (slider_noise / 100) × (country_noise / max_noise)
+    penalty_pollution = (slider_pollution / 100) × (country_pollution / max_pollution)
+    penalty_hpi       = (slider_hpi / 100) × (country_hpi / max_hpi)
+    adjusted_score = base_prediction − 2.5 × (sum of all four penalties)
+
+This means two users with different priorities will see different country rankings from the same underlying model. A user who prioritizes low crime will see high-crime countries drop in the ranking, while a user who cares most about housing costs will see countries with rising prices penalised instead. The final scores are normalized to a 1–10 scale so the best country always shows as 10 and the worst as 1, making differences between countries immediately readable.
+
+### What the Student Sees
+In EuroHome, the Housing Satisfaction Predictor has two features:
+- **Four preference sliders** where the student sets how much they care about crime, noise, pollution, and housing price growth, plus a toggle for their preferred area type (Cities, Towns & Suburbs, or Rural Areas).
+- A **predicted satisfaction heatmap** where the student can visualize which countries best match their priorities, shaded from green (highest satisfaction) to red (lowest).
+- An **ordered table** listing countries ranked by their adjusted predicted satisfaction score based on the student's stated preferences.
 
 
 
