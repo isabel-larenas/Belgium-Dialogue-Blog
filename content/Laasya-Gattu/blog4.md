@@ -19,3 +19,6 @@ Additionally, I worked on the streamlit design for the home page layouts across 
 Overall, I learned a lot during this project and I think our whole group worked really hard on our MVP and put a lot of effort into making sure it looks like what a real user could genuinely use (after some further developments). I enjoyed the opportunity to learn what the deployed version of ML models could look like in a real-world context and am glad that I got to work on it alongside my peers.
 
 Outside of the project, I enjoyed the activities we did recently, specifically the chocolate factory and the trip to C-Mine. I am glad we got to experience trying the different chocolate and making our own designs While we didn't have much luck exploring Genk, I enjoyed walking through the C-Mine expedition tunnels and seeing the simulations and VR about what it was like to be a miner. I can't believe there's only one day left on the dialogue and I will miss it!
+
+<img src="/Belgium-Dialogue-Blog/images/choc.png" style="max-width: none !important; width: 500px !important;">
+<img src="/Belgium-Dialogue-Blog/images/c-mine.png" style="max-width: none !important; width: 500px !important;">
